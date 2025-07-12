@@ -1,0 +1,409 @@
+body {
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #eef2f7;
+  color: #333;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+body.dark-mode {
+  background: #1e1e2f;
+  color: #e0e0e0;
+}
+
+header {
+  font-size: 28px;
+  font-weight: bold;
+  background: linear-gradient(to right, #2c3e50, #34495e);
+  color: white;
+  padding: 20px;
+  text-align: center;
+  border-bottom: 4px solid #1abc9c;
+  position: relative;
+}
+
+header .dark-toggle {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  cursor: pointer;
+  background: #1abc9c;
+  border: none;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 20px;
+  transition: background 0.3s ease;
+}
+
+header .dark-toggle:hover {
+  background: #16a085;
+}
+
+.container {
+  max-width: 960px;
+  margin: 30px auto;
+  background: #fff;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  transition: background 0.3s ease;
+}
+
+body.dark-mode .container {
+  background: #2b2b3d;
+}
+
+h2 {
+  color: #2c3e50;
+  border-left: 6px solid #1abc9c;
+  padding-left: 10px;
+  margin-top: 40px;
+  font-size: 22px;
+  text-align: center;
+}
+
+body.dark-mode h2 {
+  color: #1abc9c;
+}
+
+#fileInput, #customName {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  margin-right: 10px;
+  margin-top: 10px;
+  width: calc(50% - 20px);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+body.dark-mode input {
+  background: #444;
+  color: #fff;
+  border-color: #666;
+}
+
+button {
+  background-color: #1abc9c;
+  color: white;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+  margin-top: 10px;
+}
+
+button:hover {
+  background-color: #16a085;
+  transform: translateY(-2px);
+}
+
+#uploadStatus {
+  margin-top: 12px;
+  font-weight: 500;
+  color: #e74c3c;
+}
+
+.refresh-btn {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  margin-left: 10px;
+}
+
+section::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.search-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  justify-content: center;
+}
+
+.documents-container {
+  clear: both;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+  margin-top: 25px;
+}
+
+.document-card {
+  background: #fafafa;
+  padding: 20px;
+  border-left: 5px solid #2c3e50;
+  border-radius: 14px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+  overflow: hidden;
+  position: relative;
+}
+
+body.dark-mode .document-card {
+  background: #3a3a50;
+  border-left-color: #1abc9c;
+}
+
+.document-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+}
+
+.document-card h3 {
+  margin: 0 0 12px 0;
+  font-size: 18px;
+  color: #34495e;
+  word-break: break-word;
+  transition: color 0.3s ease;
+}
+
+body.dark-mode .document-card h3 {
+  color: #f0f0f0;
+}
+
+.document-card pre {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+  color: #555;
+  background: #f0f0f0;
+  padding: 10px;
+  border-radius: 8px;
+  overflow-x: auto;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+body.dark-mode .document-card pre {
+  background: #2f2f3f;
+  color: #ccc;
+}
+
+details {
+  transition: all 0.3s ease;
+}
+
+details[open] summary:after {
+  content: "▲";
+  float: right;
+}
+
+details summary:after {
+  content: "▼";
+  float: right;
+  margin-left: 10px;
+}
+
+details summary {
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f0f0f0;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #1abc9c;
+  border-radius: 10px;
+}
+
+body.dark-mode ::-webkit-scrollbar-track {
+  background: #2f2f3f;
+}
+.document-card button {
+  margin-top: 12px;
+  padding: 8px 14px;
+  font-size: 14px;
+  border-radius: 6px;
+  background-color: #2980b9;
+}
+
+.document-card button:hover {
+  background-color: #1c5e87;
+}
+
+body.dark-mode .document-card button {
+  background-color: #3498db;
+  color: white;
+}
+
+body.dark-mode .document-card button:hover {
+  background-color: #2980b9;
+}
+.document-card {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(8px);
+  border-left: 5px solid #1abc9c;
+  border-radius: 16px;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+  padding: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+body.dark-mode .document-card {
+  background: rgba(45, 45, 65, 0.85);
+  border-left-color: #1abc9c;
+}
+
+.document-card h3 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #2c3e50;
+}
+
+body.dark-mode .document-card h3 {
+  color: #e0e0e0;
+}
+
+.document-card pre {
+  background: #f5f5f5;
+  color: #444;
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 14px;
+}
+
+body.dark-mode .document-card pre {
+  background: #2d2d3d;
+  color: #ddd;
+}
+
+.document-card button {
+  align-self: flex-start;
+  margin-top: 10px;
+  padding: 8px 16px;
+  background: linear-gradient(135deg, #3498db, #2980b9);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.3s ease;
+}
+
+.document-card button:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #2980b9, #2471a3);
+}
+
+body.dark-mode .document-card button {
+  background: linear-gradient(135deg, #5dade2, #3498db);
+}
+
+body.dark-mode .document-card button:hover {
+  background: linear-gradient(135deg, #2980b9, #2471a3);
+}
+/* Add this if not already present to separate buttons inside card */
+.document-card button {
+  margin-right: 10px;
+}
+
+/* Make delete button stand out */
+.document-card button:last-of-type {
+  background-color: #e74c3c;
+}
+
+.document-card button:last-of-type:hover {
+  background-color: #c0392b;
+}
+.document-card button {
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+/* 🎉 Fade-in animation for cards */
+.fade-in {
+  animation: fadeInUp 0.6s ease-out both;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ⏳ Loader overlay */
+.loader-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(240, 240, 240, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  backdrop-filter: blur(4px);
+}
+
+body.dark-mode .loader-overlay {
+  background: rgba(30, 30, 47, 0.4);
+}
+
+/* Spinner */
+.loader-overlay .spinner {
+  border: 6px solid #f3f3f3;
+  border-top: 6px solid #1abc9c;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* 🔔 Toast notification */
+.toast {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: #1abc9c;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-weight: 500;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  z-index: 10000;
+  animation: slideUpFade 0.6s ease-out;
+}
+
+@keyframes slideUpFade {
+  0% {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+body.dark-mode .toast {
+  background: #16a085;
+}

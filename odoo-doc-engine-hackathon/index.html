@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Intelligent Document Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Loader */
+    #loader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(255, 255, 255, 0.7);
+      z-index: 1000;
+      display: none;
+      justify-content: center;
+      align-items: center;
+    }
+    #loader::after {
+      content: "";
+      width: 50px;
+      height: 50px;
+      border: 5px solid #1abc9c;
+      border-top-color: transparent;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* Toast */
+    #toast {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #1abc9c;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-weight: 500;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s ease, transform 0.3s ease;
+      transform: translateY(20px);
+    }
+    #toast.show {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    .fade-in {
+      animation: fadeIn 0.6s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="loader"></div>
+  <div id="toast"></div>
+  <header>
+    📄 Intelligent Document Dashboard
+    <button class="dark-toggle" onclick="toggleDarkMode()">🌓 Toggle Dark Mode</button>
+  </header>
+
+  <div class="container">
+    <!-- Upload Section -->
+    <section>
+      <h2>📤 Upload Document</h2>
+      <input type="file" id="fileInput" />
+      <input type="text" id="customName" placeholder="Enter custom display name (optional)" />
+      <button onclick="uploadDocument()">Upload</button>
+      <p id="uploadStatus"></p>
+    </section>
+
+    <!-- Search and Document Display Section -->
+    <section>
+      <h2>🧾 Extracted Documents</h2>
+      <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="🔍 Search by display name..." />
+        <select id="categoryFilter" onchange="filterDocuments()">
+          <option value="">📂 All Categories</option>
+          <option value="Sales">💰 Sales</option>
+          <option value="Purchase">🧾 Purchase</option>
+          <option value="Other">📦 Other</option>
+        </select>
+        <button onclick="searchDocuments()">🔍 Search</button>
+        <button onclick="loadDocuments()">🔄 Refresh</button>
+      </div>
+
+      <div id="documents" class="documents-container">
+        <!-- Extracted documents will be loaded here -->
+      </div>
+    </section>
+  </div>
+
+  <script>
+    // Toast helper
+    function showToast(message, duration = 3000) {
+      const toast = document.getElementById("toast");
+      toast.textContent = message;
+      toast.classList.add("show");
+      setTimeout(() => toast.classList.remove("show"), duration);
+    }
+
+    function showLoader(show = true) {
+      const loader = document.getElementById("loader");
+      loader.style.display = show ? "flex" : "none";
+    }
+
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark-mode");
+      const mode = document.body.classList.contains("dark-mode") ? "dark" : "light";
+      localStorage.setItem("theme", mode);
+      showToast(`Switched to ${mode} mode 🌗`);
+    }
+
+    window.onload = () => {
+      if (localStorage.getItem("theme") === "dark") {
+        document.body.classList.add("dark-mode");
+      }
+      loadDocuments();
+    };
+  </script>
+  <script src="script.js" defer></script>
+</body>
+</html>
